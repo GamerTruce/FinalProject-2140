@@ -1,0 +1,8 @@
+Date: 2021-01-28 10:01:12
+Product ID: pork834 | Total quantity sold: 5
+Product ID: cheese58 | Total quantity sold: 10
+Product ID: flour164 | Total quantity sold: 8
+Product ID: pie597 | Total quantity sold: 2
+Product ID: soap178 | Total quantity sold: 8
+Product ID: toothpaste981 | Total quantity sold: 1
+Product ID: kidney725 | Total quantity sold: 15
