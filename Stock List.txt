@@ -1,0 +1,7 @@
+Product ID: pork834 | Product quantity: 20 | Product price: $300
+Product ID: cheese58 | Product quantity: 20 | Product price: $100
+Product ID: flour164 | Product quantity: 50 | Product price: $75
+Product ID: pie597 | Product quantity: 20 | Product price: $150
+Product ID: soap178 | Product quantity: 10 | Product price: $100
+Product ID: toothpaste981 | Product quantity: 10 | Product price: $250
+Product ID: kidney725 | Product quantity: 20 | Product price: $190
