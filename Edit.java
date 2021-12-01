@@ -19,7 +19,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Font;
 
-//import ModifyList.ButtonListener;
 
 public class Edit extends JFrame {
 
@@ -136,6 +135,7 @@ public class Edit extends JFrame {
         setPreferredSize(new Dimension(400, 350));
 	}
 	
+	//Button actions
 	private class ButtonListener implements ActionListener
 	{
 		Random random = new Random();
@@ -143,11 +143,11 @@ public class Edit extends JFrame {
 	    {
 	    	boolean inList = false;
 	        if(event.getSource() == enter) {
-	        	if(pID.getText().length() > 0) {
-	        		if (pName.getText().length() > 0 || pQuan.getText().length() > 0 || pPrice.getText().length() > 0) {
+	        	if(pID.getText().length() > 0) { //Ensures ID is entered
+	        		if (pName.getText().length() > 0 || pQuan.getText().length() > 0 || pPrice.getText().length() > 0) { //Ensures at least one product characteristic is entered
 	        			for (String i[] : UserLogin.products){
 	        		         if (i[0].equals(pID.getText())){
-	        		           inList = true;
+	        		           inList = true; //Ensures product exists
 	        		           break;
 	        		         }
 	        		    }
@@ -168,7 +168,7 @@ public class Edit extends JFrame {
 		        	            }
 	        	            }
 	        			}
-	        				if (pName.getText().length() > 0) {
+	        				if (pName.getText().length() > 0) { //Changes name of product at index containing given ID
 	        					for (String i[] : UserLogin.products){
 	        						if (i[0].equals(pName.getText())){
 	        							i[0] = pName.getText() + random.nextInt(999 - 100);
@@ -177,12 +177,12 @@ public class Edit extends JFrame {
 	        					}
 	        	             }
 	        				if (pQuan.getText().length() > 0) {
-	        					if (Integer.parseInt(pQuan.getText()) <= 0){
+	        					if (Integer.parseInt(pQuan.getText()) <= 0){ //Integers must be greater than 0
 	        						msg.setText("Invalid quantity. Enter an integer greater than 0");
 	        		                pQuan.setText("");
 	        		               }
 	        		        }
-	        				if (pQuan.getText().length() > 0) {
+	        				if (pQuan.getText().length() > 0) {//Changes quantity of product at index containing given ID
 	        					for (String i[] : UserLogin.products){
 	        						if (i[0].equals(pID.getText())){
 	        							i[1] = pQuan.getText();
@@ -191,14 +191,14 @@ public class Edit extends JFrame {
 	        		             }
 	        				}
 	        				if (pPrice.getText().length() > 0) {
-	        					if (Integer.parseInt(pPrice.getText()) <= 0){
+	        					if (Integer.parseInt(pPrice.getText()) <= 0){ //Integers must be greater than 0
 	        						msg.setText("Invalid price. Enter an integer greater than 0");
 	        		                pPrice.setText("");
 	        		             }
 	        		         }
 	        				if (pPrice.getText().length() > 0) {
 	        					for (String i[] : UserLogin.products){
-	        						if (i[0].equals(pID.getText())){
+	        						if (i[0].equals(pID.getText())){ //Changes price of product at index containing given ID
 	        							i[2] = pPrice.getText();
 	        							break;
 	        		                 }
@@ -221,6 +221,8 @@ public class Edit extends JFrame {
 	        msg.setText("");
 	    }
 	}
+	
+	//Displays new Stock List
 	Object[] row = new Object[0];
 	public void updateTable(){
     	for (String[] i: UserLogin.products) {
