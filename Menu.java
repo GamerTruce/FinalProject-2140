@@ -32,19 +32,6 @@ public class Menu extends JFrame {
     private JButton btnNewButton_1;
     private JLabel lblNewLabel;
 
-	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Menu frame = new Menu();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -70,10 +57,10 @@ public class Menu extends JFrame {
         stockList.setBounds(313, 103, 186, 50);
         salesReport = new JButton("View and Export Report");
         salesReport.setFont(new Font("Tahoma", Font.PLAIN, 16));
-        salesReport.setBounds(153, 222, 221, 50);
+        salesReport.setBounds(127, 222, 221, 50);
         cashier = new JButton("Conduct Sales Transaction");
         cashier.setFont(new Font("Tahoma", Font.PLAIN, 16));
-        cashier.setBounds(503, 222, 221, 50);
+        cashier.setBounds(503, 222, 264, 50);
         suppManagement = new JButton("View and Modify Suppliers");
         suppManagement.setFont(new Font("Tahoma", Font.PLAIN, 16));
         suppManagement.setBounds(603, 103, 221, 50);
