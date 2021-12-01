@@ -16,9 +16,6 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import java.awt.Font;
 
-//import AddItem.ButtonListener;
-//import AddItem.RadioListener;
-
 public class ModifyList extends JFrame {
 
 	private JPanel contentPane;
@@ -81,6 +78,8 @@ public class ModifyList extends JFrame {
         setPreferredSize(new Dimension(400, 350));
 	}
 	
+	
+//Button actions
 private class ButtonListener implements ActionListener
 {
 
