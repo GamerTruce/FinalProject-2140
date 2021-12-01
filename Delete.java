@@ -3,147 +3,105 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.Random;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JTable;
-import javax.swing.JScrollPane;
 import java.awt.Font;
 
-//import ModifyList.ButtonListener;
-
-public class Delete extends JFrame {
+public class ModifyList extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField pID;
-	private JLabel msg;
-	private JButton enter, clear;
-	private JButton btnNewButton;
-	private JTable table;
-	private JScrollPane scrollPane;
-    DefaultTableModel model;
+	
+		
+    private JButton add, delete, edit;
+    private JLabel msg;
+    private int radioSelect = 0;
+    private int isChecked = 0;
+    private ButtonGroup buttonGroup;
+    private JButton btnNewButton;
+    private JButton btnNewButton_1;
 
-
+	
 
 	/**
 	 * Create the frame.
 	 */
-	public Delete() {
+	public ModifyList() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 901, 525);
+		setBounds(100, 100, 920, 533);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
-		JPanel messagePanel = new JPanel();
-        msg = new JLabel("Enter product ID for item you wish to delete.");
-        msg.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        messagePanel.add(msg);
-        messagePanel.setPreferredSize(new Dimension(349,40));
-        
-		JPanel inputPanel = new JPanel();
-        pID = new JTextField(30);
-        pID.setBounds(146, 43, 443, 43);
-        inputPanel.setLayout(null);
-        JLabel idLabel = new JLabel("Product ID:");
-        idLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
-        idLabel.setBounds(10, 30, 190, 63);
-
-        inputPanel.add(idLabel);
-        inputPanel.add(pID);
-        inputPanel.setPreferredSize(new Dimension(349,120));
-        
-
-        JPanel btnPanel = new JPanel();
         ButtonListener buttonListener = new ButtonListener();
-         btnPanel.setPreferredSize(new Dimension(349,40));
-
+        contentPane.setLayout(null);
         
-        getContentPane().add(messagePanel, BorderLayout.NORTH);
-        getContentPane().add(inputPanel);
-        
-        scrollPane = new JScrollPane();
-        scrollPane.setBounds(10, 127, 857, 279);
-        inputPanel.add(scrollPane);
-        
-        table = new JTable();
-        scrollPane.setViewportView(table);
-        model = new DefaultTableModel();
-        Object[] column = {"Product ID", "Product Quantity", "Product Price"};
-        model.setColumnIdentifiers(column);
-        table.setModel(model);
-        scrollPane.setViewportView(table);
-        
-        updateTable();
-        
-        getContentPane().add(messagePanel, BorderLayout.NORTH);
-        getContentPane().add(inputPanel);
-        enter = new JButton("Enter");
-        enter.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        enter.setBounds(768, 10, 82, 27);
-        inputPanel.add(enter);
-        clear = new JButton("Clear");
-        clear.setBounds(768, 49, 82, 27);
-        inputPanel.add(clear);
-        clear.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        
-        btnNewButton = new JButton("Back");
-        btnNewButton.setBounds(768, 86, 82, 27);
-        inputPanel.add(btnNewButton);
-        btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnNewButton.addActionListener(new ActionListener() {
+        btnNewButton_1 = new JButton("Back");
+        btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        btnNewButton_1.setBounds(808, 388, 73, 52);
+        btnNewButton_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		ModifyList m = new ModifyList();
-        		m.setVisible(true);
+        		StockList st = new StockList();
+            	st.setVisible(true);
         	}
         });
-        clear.addActionListener(buttonListener);
-        enter.addActionListener(buttonListener);
-        getContentPane().add(btnPanel, BorderLayout.SOUTH);
+        contentPane.add(btnNewButton_1);
+        add = new JButton("Add item");
+        add.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        add.setBounds(73, 139, 111, 52);
+        contentPane.add(add);
+        delete = new JButton("Delete item");
+        delete.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        delete.setBounds(394, 146, 142, 39);
+        contentPane.add(delete);
+        edit = new JButton("Edit item");
+        edit.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        edit.setBounds(728, 146, 111, 39);
+        contentPane.add(edit);
         
+        JLabel lblNewLabel = new JLabel("Select Option:");
+        lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
+        lblNewLabel.setBounds(424, 36, 111, 40);
+        contentPane.add(lblNewLabel);
+        edit.addActionListener(buttonListener);
+        delete.addActionListener(buttonListener);
+        add.addActionListener(buttonListener);
+
+       
+        setPreferredSize(new Dimension(400, 350));
 	}
 	
-	private class ButtonListener implements ActionListener
-	{
-
-	    public void actionPerformed(ActionEvent event)
-	    {
-	        if(event.getSource() == enter)
-	        {
-	        	if(pID.getText().length() >0) {
-	        		for (String i[] : UserLogin.products){
-	        			if (i[0].equals(pID.getText())){
-	        				int index = UserLogin.products.indexOf(i);
-	        		        UserLogin.products.remove(index);
-	        		        msg.setText("Item deleted");
-	        		        model.setRowCount(0);
-	        		        updateTable();
-	        		      }
-	        		    }
-	        	}else {
-	        		msg.setText("Enter product ID");
-	        	}
-	        }else {
-	        	pID.setText("");
-	        }
-	        
-	      }
-	    }
-		Object[] row = new Object[0];
-		public void updateTable(){
-	    	for (String[] i: UserLogin.products) {
-	        	row = i;
-	            model.addRow(row);
-	    	}
-	    	return;
-    }
-	 }
 	
+//Button actions
+private class ButtonListener implements ActionListener
+{
 
-  
+    public void actionPerformed(ActionEvent event)
+    {
+        if(event.getSource() == add)
+        {
+        	AddItem at = new AddItem();
+    		at.setVisible(true);
+        }else {
+        	if(event.getSource() == delete) {
+        		Delete d = new Delete();
+        		d.setVisible(true);
+        	}else {
+        		if(event.getSource() == edit) {
+        			Edit e = new Edit();
+        			e.setVisible(true);
+        		}
+        	}
+        }
+      }
+    }
+ }
+
+
