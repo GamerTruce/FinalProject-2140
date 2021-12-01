@@ -19,8 +19,6 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import java.awt.Font;
 
-/*import Login.ButtonListener;
-import Login.RadioListener;*/
 
 public class Menu extends JFrame {
 
@@ -34,9 +32,7 @@ public class Menu extends JFrame {
     private JButton btnNewButton_1;
     private JLabel lblNewLabel;
 
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -117,6 +113,8 @@ public class Menu extends JFrame {
        
         setPreferredSize(new Dimension(400, 350));
 	}
+	
+	//Button actions
 	private class ButtonListener implements ActionListener
     {
     
@@ -134,6 +132,10 @@ public class Menu extends JFrame {
             	SupplierManagement sm = new SupplierManagement();
             	sm.setVisible(true);
             }
+            if(event.getSource() == cashier) {
+            	Cashier c = new Cashier();
+            	c.setVisible(true);
+            }
                
         }
     }
@@ -146,6 +148,7 @@ public class Menu extends JFrame {
         }
     }
 
+	//Ensures position is selected by user
     private class AcceptListener implements ItemListener
     {
 
