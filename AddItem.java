@@ -24,10 +24,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Font;
 
-//import Menu.RadioListener;
-
-//import Login.ButtonListener;
-//import Login.RadioListener;
 
 public class AddItem extends JFrame {
 	
@@ -145,6 +141,8 @@ public class AddItem extends JFrame {
        
         setPreferredSize(new Dimension(400, 350));
 }
+	
+	//Button actions
 	private class ButtonListener implements ActionListener
     {
 		Object[] row = new Object[0];
@@ -154,33 +152,33 @@ public class AddItem extends JFrame {
             if(event.getSource() == enter)
             {
                 if(pName.getText().length() > 0 && pQuan.getText().length() > 0 && pPrice.getText().length() > 0)
-                {
+                { //Ensures all fields are completed
                 	for (String i[] : UserLogin.products){
                       String[] namePart = i[0].split("(?<=\\D)(?=\\d)");
-                      if (namePart[0].equals(pName.getText())){
+                      if (namePart[0].equals(pName.getText())){ //Ensures products are not duplicated
                     	  msg.setText("Product name already exists");
                     	  pName.setText("");
                       }
                     }   
                     Random random = new Random();
-                    String ID = pName.getText() + random.nextInt(999 - 100);
+                    String ID = pName.getText() + random.nextInt(999 - 100); //Creates ID containing name and 3 random integers
                     
                     Integer quantity =  Integer.parseInt(pQuan.getText());
                     if (quantity <= 0){
-                      if (quantity <= 0){
+                      if (quantity <= 0){ //Quantity must be greater than 0
                     	  msg.setText("Invalid quantity. Enter an integer greater than 0");
                     	  pQuan.setText("");
                       }
                     }
                     Integer price =  Integer.parseInt(pPrice.getText());
                     if (price <= 0){
-                      if (price <= 0){
+                      if (price <= 0){ //Quantity must be greater than 0
                         msg.setText("Invalid price. Enter an integer greater than 0");
                         pPrice.setText("");
                       }
                     }
                     String[] item = {ID, quantity.toString(), price.toString()};
-                    UserLogin.products.add(item);
+                    UserLogin.products.add(item); //Adds item to stock list
                                         
                     if (pName.getText().length() > 0 && pQuan.getText().length() > 0 && pPrice.getText().length() > 0) {
                		 msg.setText("New product succesfully added");
@@ -201,6 +199,7 @@ public class AddItem extends JFrame {
             }
         }
     }
+	//Prints stock list in frame
 	public void updateTable(){
 		Object[] row = new Object[0];
     	for (String[] i : UserLogin.products) {
