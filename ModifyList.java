@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import java.awt.Font;
 
 //import AddItem.ButtonListener;
 //import AddItem.RadioListener;
@@ -38,44 +39,43 @@ public class ModifyList extends JFrame {
 	 */
 	public ModifyList() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 920, 533);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
-        //inputPanel.setLayout(new GridLayout(0,1));
-            
-
-       
-
-       
-       JPanel btnPanel = new JPanel();
-        add = new JButton("Add item");
-        delete = new JButton("Delete item");
-        edit = new JButton("Edit item");
         ButtonListener buttonListener = new ButtonListener();
-        add.addActionListener(buttonListener);
-        delete.addActionListener(buttonListener);
-        edit.addActionListener(buttonListener);
-
-        btnPanel.add(add);
-        btnPanel.add(delete);
-        btnPanel.add(edit);
-        btnPanel.setPreferredSize(new Dimension(349,40));
-
-     
-
-        getContentPane().add(btnPanel, BorderLayout.NORTH);
+        contentPane.setLayout(null);
         
         btnNewButton_1 = new JButton("Back");
+        btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        btnNewButton_1.setBounds(808, 388, 73, 52);
         btnNewButton_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		StockList st = new StockList();
             	st.setVisible(true);
         	}
         });
-        contentPane.add(btnNewButton_1, BorderLayout.CENTER);
+        contentPane.add(btnNewButton_1);
+        add = new JButton("Add item");
+        add.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        add.setBounds(73, 139, 111, 52);
+        contentPane.add(add);
+        delete = new JButton("Delete item");
+        delete.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        delete.setBounds(394, 146, 142, 39);
+        contentPane.add(delete);
+        edit = new JButton("Edit item");
+        edit.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        edit.setBounds(728, 146, 111, 39);
+        contentPane.add(edit);
+        
+        JLabel lblNewLabel = new JLabel("Select Option:");
+        lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
+        lblNewLabel.setBounds(424, 36, 111, 40);
+        contentPane.add(lblNewLabel);
+        edit.addActionListener(buttonListener);
+        delete.addActionListener(buttonListener);
+        add.addActionListener(buttonListener);
 
        
         setPreferredSize(new Dimension(400, 350));

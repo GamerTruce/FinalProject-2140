@@ -55,7 +55,7 @@ public class StockList extends JFrame {
 		setBackground(Color.BLACK);
 	    
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 915, 531);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -77,40 +77,57 @@ public class StockList extends JFrame {
 
         JPanel btnPanel = new JPanel();
         ButtonListener buttonListener = new ButtonListener();
-        btnPanel.setLayout(new MigLayout("", "[75px][][87px][121px][53px]", "[21px][][][][]"));
         btnPanel.setPreferredSize(new Dimension(349,40));
         
 
         getContentPane().add(inputPanel);
         getContentPane().add(radioPanel);
         getContentPane().add(btnPanel);
-        add = new JButton("Add Item");
-        add.setBackground(Color.YELLOW);
-        add.addActionListener(buttonListener);
-        
-                btnPanel.add(add, "cell 1 2,alignx left,aligny top");
+                
+                JLabel TitleLabel = new JLabel("STOCK LIST");
+                TitleLabel.setFont(new Font("Tahoma", Font.BOLD, 36));
+                TitleLabel.setBounds(337, 10, 232, 77);
+                add = new JButton("Add Item");
+                add.setFont(new Font("Tahoma", Font.PLAIN, 17));
+                add.setBounds(69, 206, 108, 42);
+                add.setBackground(Color.YELLOW);
+                add.addActionListener(buttonListener);
+                btnPanel.setLayout(null);
+                btnPanel.add(TitleLabel);
+                
+                        btnPanel.add(add);
                 modify = new JButton("Modify Item");
+                modify.setFont(new Font("Tahoma", Font.PLAIN, 17));
+                modify.setBounds(376, 205, 129, 44);
                 modify.setBackground(Color.YELLOW);
                 modify.addActionListener(buttonListener);
-                btnPanel.add(modify, "cell 2 2,alignx left,aligny top");
+                btnPanel.add(modify);
                 generate = new JButton("Generate Stock List");
+                generate.setFont(new Font("Tahoma", Font.PLAIN, 17));
+                generate.setBounds(658, 206, 184, 42);
                 generate.setBackground(Color.YELLOW);
                 generate.addActionListener(buttonListener);
-                btnPanel.add(generate, "cell 3 2,alignx left,aligny top");
+                btnPanel.add(generate);
                 
                 btnNewButton = new JButton("Back");
+                btnNewButton.setBounds(760, 401, 108, 49);
                 btnNewButton.setBackground(Color.PINK);
-                btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
+                btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
                 btnNewButton.addActionListener(new ActionListener() {
                 	public void actionPerformed(ActionEvent e) {
                 		Menu m = new Menu();
                 		m.setVisible(true);
                 	}
                 });
-                btnPanel.add(btnNewButton, "cell 2 4,growx,aligny top");
+                btnPanel.add(btnNewButton);
+                
+                JLabel lblNewLabel = new JLabel("What would you like to to do the Stock List?");
+                lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+                lblNewLabel.setBounds(310, 75, 299, 68);
+                btnPanel.add(lblNewLabel);
 
         
-        setPreferredSize(new Dimension(400, 350));
+        setPreferredSize(new Dimension(926, 532));
         
         
     }

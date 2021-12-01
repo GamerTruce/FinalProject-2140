@@ -12,8 +12,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+import java.awt.Font;
 
 //import ModifyList.ButtonListener;
 
@@ -28,6 +32,8 @@ public class Edit extends JFrame {
     private JButton btnNewButton;
     private JButton btnNewButton_1;
     private JButton btnNewButton_2;
+    private JTable table;
+    DefaultTableModel model;
 
 
 	/**
@@ -35,23 +41,35 @@ public class Edit extends JFrame {
 	 */
 	public Edit() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 908, 523);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
 		JPanel inputPanel = new JPanel();
-		inputPanel.setLayout(new GridLayout(0,1));
         
 		pID = new JTextField(30);
+		pID.setBounds(169, 4, 715, 49);
 		pName = new JTextField(30);
+		pName.setBounds(169, 61, 715, 49);
         pQuan = new JTextField(30);
+        pQuan.setBounds(169, 120, 715, 49);
         pPrice = new JTextField(30);
+        pPrice.setBounds(169, 179, 715, 49);
         JLabel iLabel = new JLabel("Product ID:");
+        iLabel.setBounds(0, 2, 884, 49);
+        iLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
         JLabel nLabel = new JLabel("Product name:");
+        nLabel.setBounds(0, 61, 884, 49);
+        nLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
         JLabel qLabel = new JLabel("Product quantity:");
+        qLabel.setBounds(0, 120, 884, 49);
+        qLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
         JLabel pLabel = new JLabel("Product price:");
+        pLabel.setBounds(0, 179, 884, 49);
+        pLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        inputPanel.setLayout(null);
 
         inputPanel.add(iLabel);
         inputPanel.add(pID);
@@ -65,7 +83,9 @@ public class Edit extends JFrame {
 		
 		JPanel btnPanel = new JPanel();
         enter = new JButton("Enter");
+        enter.setFont(new Font("Tahoma", Font.PLAIN, 15));
         clear = new JButton("Clear");
+        clear.setFont(new Font("Tahoma", Font.PLAIN, 15));
         ButtonListener buttonListener = new ButtonListener();
         enter.addActionListener(buttonListener);
         clear.addActionListener(buttonListener);
@@ -76,6 +96,7 @@ public class Edit extends JFrame {
         
         JPanel messagePanel = new JPanel();
         msg = new JLabel("Enter product ID for item you wish to edit and new name/quantity/price in the relevant field(s)");
+        msg.setFont(new Font("Tahoma", Font.PLAIN, 17));
         messagePanel.add(msg);
         messagePanel.setPreferredSize(new Dimension(349,40));
 
@@ -83,9 +104,23 @@ public class Edit extends JFrame {
 
         getContentPane().add(messagePanel, BorderLayout.NORTH);
         getContentPane().add(inputPanel);
-        getContentPane().add(btnPanel, BorderLayout.SOUTH);
         
+        JScrollPane scrollPane_1 = new JScrollPane();
+        scrollPane_1.setBounds(0, 245, 884, 151);
+        inputPanel.add(scrollPane_1);
+        
+        table = new JTable();
+        model = new DefaultTableModel();
+        Object[] column = {"Product ID", "Product Quantity", "Product Price"};
+        model.setColumnIdentifiers(column);
+        table.setModel(model);
+        scrollPane_1.setViewportView(table);
+        getContentPane().add(btnPanel, BorderLayout.SOUTH);
+        updateTable();
+            
+             
         btnNewButton_2 = new JButton("Back");
+        btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
         btnNewButton_2.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		ModifyList m = new ModifyList();
@@ -93,7 +128,10 @@ public class Edit extends JFrame {
         	}
         });
         btnPanel.add(btnNewButton_2);
-
+        
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBounds(21, 28, 379, 55);
+        btnPanel.add(scrollPane);
        
         setPreferredSize(new Dimension(400, 350));
 	}
@@ -166,7 +204,9 @@ public class Edit extends JFrame {
 	        		                 }
 	        		             }
 	        				}
-	        				msg.setText("Product updated");	        				
+	        				msg.setText("Product updated");	    
+	        				model.setRowCount(0);
+	        				updateTable();
 	        		}else {
 	        			msg.setText("Field missing");
 	        		}
@@ -181,6 +221,13 @@ public class Edit extends JFrame {
 	        msg.setText("");
 	    }
 	}
-
+	Object[] row = new Object[0];
+	public void updateTable(){
+    	for (String[] i: UserLogin.products) {
+        	row = i;
+            model.addRow(row);
+    	}
+    	return;
+    }
 }
 

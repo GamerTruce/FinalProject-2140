@@ -10,6 +10,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
+import java.awt.Font;
 
 //import ModifyList.ButtonListener;
 
@@ -20,6 +24,9 @@ public class Delete extends JFrame {
 	private JLabel msg;
 	private JButton enter, clear;
 	private JButton btnNewButton;
+	private JTable table;
+	private JScrollPane scrollPane;
+    DefaultTableModel model;
 
 
 
@@ -28,7 +35,7 @@ public class Delete extends JFrame {
 	 */
 	public Delete() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 901, 525);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -36,12 +43,17 @@ public class Delete extends JFrame {
 		
 		JPanel messagePanel = new JPanel();
         msg = new JLabel("Enter product ID for item you wish to delete.");
+        msg.setFont(new Font("Tahoma", Font.PLAIN, 20));
         messagePanel.add(msg);
         messagePanel.setPreferredSize(new Dimension(349,40));
         
 		JPanel inputPanel = new JPanel();
         pID = new JTextField(30);
+        pID.setBounds(146, 43, 443, 43);
+        inputPanel.setLayout(null);
         JLabel idLabel = new JLabel("Product ID:");
+        idLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
+        idLabel.setBounds(10, 30, 190, 63);
 
         inputPanel.add(idLabel);
         inputPanel.add(pID);
@@ -49,29 +61,52 @@ public class Delete extends JFrame {
         
 
         JPanel btnPanel = new JPanel();
-        enter = new JButton("Enter");
-        clear = new JButton("Clear");
         ButtonListener buttonListener = new ButtonListener();
-        enter.addActionListener(buttonListener);
-        clear.addActionListener(buttonListener);
-
-         btnPanel.add(enter);
-         btnPanel.add(clear);
          btnPanel.setPreferredSize(new Dimension(349,40));
 
         
         getContentPane().add(messagePanel, BorderLayout.NORTH);
         getContentPane().add(inputPanel);
-        getContentPane().add(btnPanel, BorderLayout.SOUTH);
+        
+        scrollPane = new JScrollPane();
+        scrollPane.setBounds(10, 127, 857, 279);
+        inputPanel.add(scrollPane);
+        
+        table = new JTable();
+        scrollPane.setViewportView(table);
+        model = new DefaultTableModel();
+        Object[] column = {"Product ID", "Product Quantity", "Product Price"};
+        model.setColumnIdentifiers(column);
+        table.setModel(model);
+        scrollPane.setViewportView(table);
+        
+        updateTable();
+        
+        getContentPane().add(messagePanel, BorderLayout.NORTH);
+        getContentPane().add(inputPanel);
+        enter = new JButton("Enter");
+        enter.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        enter.setBounds(768, 10, 82, 27);
+        inputPanel.add(enter);
+        clear = new JButton("Clear");
+        clear.setBounds(768, 49, 82, 27);
+        inputPanel.add(clear);
+        clear.setFont(new Font("Tahoma", Font.PLAIN, 15));
         
         btnNewButton = new JButton("Back");
+        btnNewButton.setBounds(768, 86, 82, 27);
+        inputPanel.add(btnNewButton);
+        btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
         btnNewButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		ModifyList m = new ModifyList();
         		m.setVisible(true);
         	}
         });
-        btnPanel.add(btnNewButton);
+        clear.addActionListener(buttonListener);
+        enter.addActionListener(buttonListener);
+        getContentPane().add(btnPanel, BorderLayout.SOUTH);
+        
 	}
 	
 	private class ButtonListener implements ActionListener
@@ -87,6 +122,8 @@ public class Delete extends JFrame {
 	        				int index = UserLogin.products.indexOf(i);
 	        		        UserLogin.products.remove(index);
 	        		        msg.setText("Item deleted");
+	        		        model.setRowCount(0);
+	        		        updateTable();
 	        		      }
 	        		    }
 	        	}else {
@@ -98,6 +135,14 @@ public class Delete extends JFrame {
 	        
 	      }
 	    }
+		Object[] row = new Object[0];
+		public void updateTable(){
+	    	for (String[] i: UserLogin.products) {
+	        	row = i;
+	            model.addRow(row);
+	    	}
+	    	return;
+    }
 	 }
 	
 
