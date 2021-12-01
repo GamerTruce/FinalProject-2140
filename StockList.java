@@ -132,6 +132,7 @@ public class StockList extends JFrame {
         
     }
 	
+	//Reads Stock List file
 	private String[][] readFile() {
         File text = new File("Stock List.txt");
          Scanner scnr = null;
@@ -162,7 +163,9 @@ public class StockList extends JFrame {
           }
         return input;
     }
-
+	
+	
+	//Actions for buttons
     private class ButtonListener implements ActionListener
     {
     
@@ -193,6 +196,7 @@ public class StockList extends JFrame {
             		         System.out.println("");
             		         out.write("\n");
             		     }
+            		     
             		     out.close();
             		 }
             		 // Catch block to handle the exceptions
@@ -207,7 +211,7 @@ public class StockList extends JFrame {
             	        String[][] data = readFile();
 
             	        // Column Names
-            	        String[] columnNames = { "ID", "Quantity", "Price" };
+            	        String[] columnNames = { "ID", "Quantity", "Price ($)" };
 
             	        // Initializing the JTable
             	        JTable j = new JTable(data, columnNames);
