@@ -32,21 +32,12 @@ import net.miginfocom.swing.MigLayout;
 import java.awt.Font;
 import java.awt.Color;
 
-/*import Login.ButtonListener;
-import Login.RadioListener;*/
 
 public class StockList extends JFrame {
 
 	private JPanel contentPane;
     private JButton add, modify, generate;
     private JButton btnNewButton;
-    /*private ButtonGroup buttonGroup;
-    private JButton btnNewButton;*/
-
-	/**
-	 * Launch the application.
-	 */
-    
 
 	/**
 	 * Create the frame.
