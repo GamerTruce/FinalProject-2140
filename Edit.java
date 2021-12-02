@@ -10,6 +10,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -33,6 +34,7 @@ public class Edit extends JFrame {
     private JButton btnNewButton_2;
     private JTable table;
     DefaultTableModel model;
+   
 
 
 	/**
@@ -182,6 +184,7 @@ public class Edit extends JFrame {
 	        		                pQuan.setText("");
 	        		               }
 	        		        }
+	        				
 	        				if (pQuan.getText().length() > 0) {//Changes quantity of product at index containing given ID
 	        					for (String i[] : UserLogin.products){
 	        						if (i[0].equals(pID.getText())){
