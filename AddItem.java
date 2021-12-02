@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -40,7 +41,7 @@ public class AddItem extends JFrame {
     private JTable table_1;
     DefaultTableModel model;
     
-	
+   
 
 	/**
 	 * Create the frame.
@@ -170,21 +171,21 @@ public class AddItem extends JFrame {
                     	  pQuan.setText("");
                       }
                     }
+                   
                     Integer price =  Integer.parseInt(pPrice.getText());
                     if (price <= 0){
                       if (price <= 0){ //Quantity must be greater than 0
                         msg.setText("Invalid price. Enter an integer greater than 0");
                         pPrice.setText("");
                       }
-                    }
-                    String[] item = {ID, quantity.toString(), price.toString()};
-                    UserLogin.products.add(item); //Adds item to stock list
-                                        
+                    }                                      
                     if (pName.getText().length() > 0 && pQuan.getText().length() > 0 && pPrice.getText().length() > 0) {
-               		 msg.setText("New product succesfully added");
+                    	String[] item = {ID, quantity.toString(), price.toString()};
+                        UserLogin.products.add(item); //Adds item to stock list
+               		 	msg.setText("New product succesfully added");
+                        row = item;
+                        model.addRow(row);
                     }
-                    row = item;
-                    model.addRow(row);
                                       
                  }else {
                 	 msg.setText("Fields missing");
