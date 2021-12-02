@@ -7,7 +7,7 @@ public class Login extends JPanel
     private JTextField uname;
     private JRadioButton owner, employee;
     private JButton submit, clear;
-    private JLabel confirmMsg;
+    private static JLabel confirmMsg;
     private int radioSelect = 0;
     private int isChecked = 0;
     private ButtonGroup buttonGroup;
@@ -113,6 +113,40 @@ public class Login extends JPanel
         
         
     }
+    public static boolean isValidPassword(String password)
+    {
+            boolean isValid = true;
+            if (password.length() < 8)
+            {
+                    confirmMsg.setText("Password must be more than 8 characters in length.");
+                    isValid = false;
+            }
+            String upperCaseChars = "(.*[A-Z].*)";
+            if (!password.matches(upperCaseChars ))
+            {
+            	confirmMsg.setText("Password must have atleast one uppercase character");
+                    isValid = false;
+            }
+            String lowerCaseChars = "(.*[a-z].*)";
+            if (!password.matches(lowerCaseChars ))
+            {
+            	confirmMsg.setText("Password must have atleast one lowercase character");
+                    isValid = false;
+            }
+            String numbers = "(.*[0-9].*)";
+            if (!password.matches(numbers ))
+            {
+            	confirmMsg.setText("Password must have atleast one number");
+                    isValid = false;
+            }
+            String specialChars = "(.*[@,#,$,%].*$)";
+            if (!password.matches(specialChars ))
+            {
+            	confirmMsg.setText("Password must have atleast one special character among @#$%");
+                    isValid = false;
+            }
+            return isValid; 
+    }
 
     //Button actions
     private class ButtonListener implements ActionListener
@@ -126,7 +160,9 @@ public class Login extends JPanel
                 if(uname.getText().length() > 0 && pwdText.length() > 0 && 
                     radioSelect==1) //Ensures all fields are completed
                 {
-                    confirmMsg.setText("New user succesfully added");
+                    if (isValidPassword(pwdText)){ //Check password is valid
+                    		confirmMsg.setText("New user succesfully added");
+                    }
                 } else {
                     confirmMsg.setText("Fields missing");
                 }
@@ -150,7 +186,7 @@ public class Login extends JPanel
             if (event.getSource() == btnNewButton_1){
             	String pwdText = passwordField.getText();
                 if(uname.getText().length() > 0 && pwdText.length() > 0 && 
-                    radioSelect==1)
+                    radioSelect==1 && isValidPassword(pwdText))
                 {
                 	Menu m = new Menu();
                 	m.setVisible(true);
