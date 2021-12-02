@@ -29,7 +29,6 @@ public class Menu extends JFrame {
     private int isChecked = 0;
     private ButtonGroup buttonGroup;
     private JButton btnNewButton;
-    private JButton btnNewButton_1;
     private JLabel lblNewLabel;
 
 
@@ -54,7 +53,7 @@ public class Menu extends JFrame {
         JPanel btnPanel = new JPanel();
         stockList = new JButton("View and Modify List");
         stockList.setFont(new Font("Tahoma", Font.PLAIN, 16));
-        stockList.setBounds(313, 103, 186, 50);
+        stockList.setBounds(127, 103, 186, 50);
         salesReport = new JButton("View and Export Report");
         salesReport.setFont(new Font("Tahoma", Font.PLAIN, 16));
         salesReport.setBounds(127, 222, 221, 50);
@@ -63,24 +62,13 @@ public class Menu extends JFrame {
         cashier.setBounds(503, 222, 264, 50);
         suppManagement = new JButton("View and Modify Suppliers");
         suppManagement.setFont(new Font("Tahoma", Font.PLAIN, 16));
-        suppManagement.setBounds(603, 103, 221, 50);
+        suppManagement.setBounds(546, 103, 221, 50);
         ButtonListener buttonListener = new ButtonListener();
         stockList.addActionListener(buttonListener);
         salesReport.addActionListener(buttonListener);
         cashier.addActionListener(buttonListener);
         suppManagement.addActionListener(buttonListener);
-        
-        btnNewButton_1 = new JButton("Inventory Alert");
-        btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-        btnNewButton_1.setBounds(51, 103, 141, 50);
-        btnNewButton_1.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		InventoryAlert ia = new InventoryAlert();
-        		ia.setVisible(true);
-        	}
-        });
         btnPanel.setLayout(null);
-        btnPanel.add(btnNewButton_1);
 
         btnPanel.add(stockList);
         btnPanel.add(salesReport);
@@ -110,18 +98,22 @@ public class Menu extends JFrame {
             if(event.getSource() == stockList) {
             	StockList st = new StockList();
             	st.setVisible(true);
+            	dispose();
             }
             if(event.getSource() == salesReport) {
             	ReportFrame rf = new ReportFrame();
             	rf.setVisible(true);
+            	dispose();
             }
-            if(event.getSource() == suppManagement) {
+           if(event.getSource() == suppManagement) {
             	SupplierManagement sm = new SupplierManagement();
             	sm.setVisible(true);
+            	dispose();
             }
             if(event.getSource() == cashier) {
             	Cashier c = new Cashier();
             	c.setVisible(true);
+            	dispose();
             }
                
         }
