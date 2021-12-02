@@ -1,5 +1,3 @@
-package test;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -37,10 +35,11 @@ public class ReportFrame{
     private JTextField textField_1;
     private final Action action = new SwingAction();
     private JButton Search;
+    private JButton btnNewButton_1;
 
-	/**
+	/** this was done to test the functionalilty outside of the entire system.
 	 * Launch the application.
-	 */
+	 */ 
     //delete this when combining with project//
 /* 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -83,31 +82,32 @@ public class ReportFrame{
     textField = new JTextField();
     sp.setColumnHeaderView(textField);
     textField.setColumns(10);
-    
+    //button created to export report as an xml file
     btnNewButton = new JButton("Export to Excel");
     btnNewButton.addActionListener(new ActionListener() {
     	public void actionPerformed(ActionEvent e) {
+        //callling the excel function with the table as a parameter
     		excel(j);
-    		JOptionPane.showMessageDialog(f, "Report Exported.");
+        //Confirmation message
+    		JOptionPane.showMessageDialog(f,"Report Exported.");
     	}
     });
     btnNewButton.setBounds(299, 346, 180, 21);
     f.getContentPane().add(btnNewButton);
-    
+    //Title
     JLabel lblNewLabel = new JLabel("Inventory Report");
     lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
     lblNewLabel.setBounds(261, 10, 154, 31);
     f.getContentPane().add(lblNewLabel);
-    
+    //textfield where search inputs will be made
     textField_1 = new JTextField();
     
     
     textField_1.setBounds(464, 65, 96, 19);
     f.getContentPane().add(textField_1);
     textField_1.setColumns(10);
-    
-    
-    
+        
+    //reading in the text file.
     File text = new File("Counter.txt");
     Scanner scnr = null;
    try {
@@ -116,11 +116,12 @@ public class ReportFrame{
        // TODO Auto-generated catch block
        e.printStackTrace();
    }
-   String date = scnr.nextLine();
+   String date = scnr.nextLine();//attaching the dates of product purchases
    JLabel lblNewLabel_1 = new JLabel(date);
    lblNewLabel_1.setBounds(57, 71, 163, 13);
     f.getContentPane().add(lblNewLabel_1);
-    
+    //using rowfilter to enable the search function
+    //checking the input in textfields against data in the table and returning row matches.
     Search = new JButton("Search");
     Search.addActionListener(new ActionListener() {
     	public void actionPerformed(ActionEvent e) {
@@ -135,6 +136,17 @@ public class ReportFrame{
     });
     Search.setBounds(570, 63, 85, 21);
     f.getContentPane().add(Search);
+    
+    btnNewButton_1 = new JButton("Back");
+    btnNewButton_1.addActionListener(new ActionListener() {
+    	public void actionPerformed(ActionEvent e) {
+    		Menu m = new Menu();
+    		m.setVisible(true);
+    		f.dispose();
+    	}
+    });
+    btnNewButton_1.setBounds(684, 10, 85, 21);
+    f.getContentPane().add(btnNewButton_1);
     // Frame Size
     f.setSize(793, 414);
     // Frame Visible = true
@@ -160,7 +172,7 @@ private String[][] readFile() {
    }
   
    String [][] input = new String[inputList.size()][4];
-    //Reading each line of file using Scanner class
+    //Reading each line of the file into rows of the table.
    int i = 0;
     for(String row : inputList) {
          String [] line = row.split("\\s");
@@ -178,7 +190,6 @@ public void setVisible(boolean b) {
 	
 }
 //To export as an excel file//
-
 private void excel(JTable table){
     try
     {
