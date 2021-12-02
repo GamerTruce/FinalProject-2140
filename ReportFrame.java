@@ -1,3 +1,5 @@
+package test;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -35,7 +37,6 @@ public class ReportFrame{
     private JTextField textField_1;
     private final Action action = new SwingAction();
     private JButton Search;
-    private JButton btnNewButton_1;
 
 	/** this was done to test the functionalilty outside of the entire system.
 	 * Launch the application.
@@ -136,17 +137,6 @@ public class ReportFrame{
     });
     Search.setBounds(570, 63, 85, 21);
     f.getContentPane().add(Search);
-    
-    btnNewButton_1 = new JButton("Back");
-    btnNewButton_1.addActionListener(new ActionListener() {
-    	public void actionPerformed(ActionEvent e) {
-    		Menu m = new Menu();
-    		m.setVisible(true);
-    		f.dispose();
-    	}
-    });
-    btnNewButton_1.setBounds(684, 10, 85, 21);
-    f.getContentPane().add(btnNewButton_1);
     // Frame Size
     f.setSize(793, 414);
     // Frame Visible = true
