@@ -8,6 +8,7 @@ public class UserLogin
 	public static ArrayList<String[]> products = new ArrayList<String[]>();
 	public static ArrayList<String[]> transLog = new ArrayList<String[]>();
 	public static ArrayList<String[]> counter = new ArrayList<String[]>();
+	public static ArrayList<String[]> suppliers = new ArrayList<String[]>();
 
 	public static void main(String[] args)
     {
