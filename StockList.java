@@ -108,6 +108,7 @@ public class StockList extends JFrame {
                 	public void actionPerformed(ActionEvent e) {
                 		Menu m = new Menu();
                 		m.setVisible(true);
+                		dispose();
                 	}
                 });
                 btnPanel.add(btnNewButton);
@@ -165,12 +166,15 @@ public class StockList extends JFrame {
         	if(event.getSource() == add){
         		AddItem at = new AddItem();
         		at.setVisible(true);
+        		dispose();
             }else{
             	if(event.getSource() == modify) {
             		ModifyList ml = new ModifyList();
             		ml.setVisible(true);
+            		dispose();
             }else {
             	if(event.getSource() == generate) {
+            		dispose();
             		 File file = new File("Stock List.txt");
             		 try {
 						file.createNewFile();
