@@ -5,11 +5,8 @@ import java.awt.event.*;
 public class Login extends JPanel
 {
     private JTextField uname;
-    private JRadioButton owner, employee;
     private JButton submit, clear;
     private static JLabel confirmMsg;
-    private int radioSelect = 0;
-    private int isChecked = 0;
     private ButtonGroup buttonGroup;
     private JButton btnNewButton;
     JLabel passwordLabel = new JLabel("Password");
@@ -49,24 +46,6 @@ public class Login extends JPanel
 
         JPanel radioPanel = new JPanel();
         radioPanel.setBounds(336, 251, 267, 31);
-
-        JLabel acctypeLabel = new JLabel("Account Type:");
-        owner = new JRadioButton("Owner");
-        employee = new JRadioButton("Employee");
-
-        RadioListener radioListener = new RadioListener();
-
-        owner.addActionListener(radioListener);
-        employee.addActionListener(radioListener);
-        
-
-        buttonGroup = new ButtonGroup();
-        buttonGroup.add(owner);
-        buttonGroup.add(employee);
-
-        radioPanel.add(acctypeLabel);
-        radioPanel.add(owner);
-        radioPanel.add(employee);
 
 
         JPanel btnPanel = new JPanel();
@@ -157,8 +136,7 @@ public class Login extends JPanel
             if(event.getSource() == submit)
             {
             	String pwdText = passwordField.getText();
-                if(uname.getText().length() > 0 && pwdText.length() > 0 && 
-                    radioSelect==1) //Ensures all fields are completed
+                if(uname.getText().length() > 0 && pwdText.length() > 0) //Ensures all fields are completed
                 {
                     if (isValidPassword(pwdText)){ //Check password is valid
                     		confirmMsg.setText("New user succesfully added");
@@ -171,7 +149,6 @@ public class Login extends JPanel
                 //pwd.setText("");
                 passwordField.setText("");
                 buttonGroup.clearSelection();
-                radioSelect = 0;
                 confirmMsg.setText("<<MSG>>>");
             }
             if (event.getSource() == showPassword) {
@@ -185,8 +162,7 @@ public class Login extends JPanel
             }
             if (event.getSource() == btnNewButton_1){
             	String pwdText = passwordField.getText();
-                if(uname.getText().length() > 0 && pwdText.length() > 0 && 
-                    radioSelect==1 && isValidPassword(pwdText))
+                if(uname.getText().length() > 0 && pwdText.length() > 0 && isValidPassword(pwdText))
                 {
                 	Menu m = new Menu();
                 	m.setVisible(true);
@@ -197,24 +173,5 @@ public class Login extends JPanel
             
         }
     }
-    private class RadioListener implements ActionListener
-    {
-        
-        public void actionPerformed(ActionEvent event)
-        {
-            radioSelect = 1;
-        }
-    }
-
-    private class AcceptListener implements ItemListener
-    {
-
-        public void itemStateChanged(ItemEvent event)
-        {
-            if(isChecked == 0)
-                isChecked = 1;
-            else
-                isChecked = 0;
-        }
-    }
+   
 }
