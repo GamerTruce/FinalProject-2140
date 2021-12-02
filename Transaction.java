@@ -41,6 +41,7 @@ public class Transaction extends JFrame {
 	
 	 private final static String DIALOG_TITLE = "Inventory Alert";
 	 private final static int DIALOG_ICON = JOptionPane.WARNING_MESSAGE;
+	 private JButton btnBack;
 
 	/**
 	 * Launch the application.
@@ -120,6 +121,19 @@ public class Transaction extends JFrame {
 		amount.setColumns(10);
 		amount.setBounds(288, 230, 309, 47);
 		contentPane.add(amount);
+		
+		btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Menu m = new Menu();
+				m.setVisible(true);
+				dispose();
+			}
+			
+		});
+		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnBack.setBounds(740, 261, 96, 29);
+		contentPane.add(btnBack);
 	}
 
 	
