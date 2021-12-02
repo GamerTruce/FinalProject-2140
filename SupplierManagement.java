@@ -212,37 +212,7 @@ public class SupplierManagement extends JFrame {
 	private void clearSF() {
 		searchTF.setText(null);
 	}
-	private String[][] readFile() {
-        File text = new File("Suppliers.txt");
-         Scanner scnr = null;
-        try {
-            scnr = new Scanner(text);
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-       
-        List<String> inputList = new ArrayList<String>();
-        while(scnr.hasNextLine()){
-            String eachLine = scnr.nextLine();
-            //System.out.println(eachLine);
-            inputList.add(eachLine);
-        }
-       
-        String [][] input = new String[inputList.size()][4];
-         //Reading each line of file using Scanner class
-        int i = 0;
-         for(String row : inputList) {
-              String [] line = row.split("\\s");
-              input[i][0] = line[2];
-              input[i][1] = line[7];
-              input[i][2] = line[11];
-              input[i][3] = line[15];
-              input[i][3] = line[19];
-              i++;
-          }
-        return input;
-    }
+	
 	
 	public void supplList() {
 		File file = new File("Suppliers.txt");
@@ -270,26 +240,6 @@ public class SupplierManagement extends JFrame {
 			 // Display message when exception occurs
 		     System.out.println("exception occoured" + e);
 		 }
-		 JFrame f = new JFrame();
-	     f.setTitle("Products");
-
-	        // Data to be displayed in the JTable
-	        String[][] data = readFile();
-
-	        // Column Names
-	        String[] columnNames = { "Name", "Cost", "Product", "Speed", "Contact" };
-
-	        // Initializing the JTable
-	        JTable j = new JTable(data, columnNames);
-	        j.setBounds(30, 40, 200, 300);
-
-	        // adding it to JScrollPane
-	        JScrollPane sp = new JScrollPane(j);
-	        f.getContentPane().add(sp);
-	        // Frame Size
-	        f.setSize(500, 200);
-	        // Frame Visible = true
-	        f.setVisible(true);
 		 
 	}
 }
