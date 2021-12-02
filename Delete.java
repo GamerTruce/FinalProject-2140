@@ -146,7 +146,7 @@ public class Delete extends JFrame {
 	    	}
 	    	return;
     }
-	 }
+}
 	
 
   
