@@ -89,14 +89,17 @@ private class ButtonListener implements ActionListener
         {
         	AddItem at = new AddItem();
     		at.setVisible(true);
+    		dispose();
         }else {
         	if(event.getSource() == delete) {
         		Delete d = new Delete();
         		d.setVisible(true);
+        		dispose();
         	}else {
         		if(event.getSource() == edit) {
         			Edit e = new Edit();
         			e.setVisible(true);
+        			dispose();
         		}
         	}
         }
