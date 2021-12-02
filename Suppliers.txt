@@ -1,0 +1,2 @@
+Supplier Name: jeans | Cost for Supplier: $100 | Product supplied: apple | Delivery speed: Very Slow | Supplier contact: 53065028
+Supplier Name: newspaper | Cost for Supplier: $150 | Product supplied: leaf | Delivery speed: Slow | Supplier contact: 482964
